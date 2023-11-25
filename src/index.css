@@ -1,13 +1,32 @@
 body {
   font-family: Georgia, serif;
-  background-color: #f8f8f8;
+  background-color: lightgoldenrodyellow;
   margin: 0;
   padding: 0;
 }
+#container {
+  flex-direction: column;
+}
+#container > div {
+  display: flex;
+}
+#navbar{
+  padding: 2em;
+  justify-content:space-evenly;
+}
+#main-section{
+  margin: px;
+}
+li{
+  
+  list-style-type: none;
+}
+h1 {
+  margin: 10px;
+}
 
-#logo-image {
-  width: 30px;
-  margin-right: 10px;
+img{
+  width: 300px;
 }
 
 /* Add your own custom styles here */
