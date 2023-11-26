@@ -10,7 +10,9 @@ import Navigations from './components/Navigations'
 
 
 function App() {
-  const [selectedBookId, setSelectedBookId] = useState(null)
+  const [selectedBookId, setSelectedBookId] = useState(null);
+  const [token, setToken] = useState(null);
+
 
   return (
     <>
@@ -25,9 +27,9 @@ function App() {
       <div id='main-section'>
         <Routes>
           <Route path='/books' element={<Books setSelectedBookId={setSelectedBookId} />}/>
-          <Route path='/books/:id' element={<SingleBook setSelectedBookId={setSelectedBookId}/>} />
-          <Route path='/login' element={<Login/>} />
-          <Route path='/register' element={<Register/>} />
+          <Route path='/books/:id' element={<SingleBook setSelectedBookId={setSelectedBookId} />} />
+          <Route path='/register' element={<Register token ={token} setToken={setToken} />} />
+          <Route path='/login' element={<Login token={token} setToken={setToken} />} />
           <Route path='/account' element={<Account/>} />
           <Route path='/navigations' element={<Navigations/>} />
         </Routes>
