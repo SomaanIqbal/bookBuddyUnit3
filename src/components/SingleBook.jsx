@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams,useNavigate } from "react-router-dom";
 
-const SingleBook = ({setSelectedBookId }) => {
+const SingleBook = ({setSelectedBookId,token }) => {
 
     
     const {id} = useParams();
@@ -14,16 +14,36 @@ const SingleBook = ({setSelectedBookId }) => {
         const fetchBookDetails = async() => {
             const response = await fetch(`https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/${id}`);
             const jsonResponse = await response.json();
-            console.log(jsonResponse.book);
+            
             setBookDetails(jsonResponse.book)
         }
         fetchBookDetails()
     },[])
 
+    const checkOutBook = async() => {
+        const response = await fetch(`https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/${id}`,
+        {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                available: false,
+            })
+        });
+        const jsonResponse = await response.json();
+       
+
+        setBookDetails(jsonResponse.book)
+    }
+
   return (
     <div className="singleBook">
+        <button onClick={checkOutBook}>Check Out Book</button>
+
       <ul>
-        {bookDetails? (<div><li>Title: {bookDetails.title}</li> <li>Author: {bookDetails.author}</li> <li>Description: {bookDetails.description}</li> <li>Available: {bookDetails.available}</li> <img  src={bookDetails.coverimage}/></div>):(<h2>loading...</h2>)}
+        {bookDetails? (<div><li>Title: {bookDetails.title}</li> <li>Author: {bookDetails.author}</li> <li>Description: {bookDetails.description}</li> <li>Available: {bookDetails.available? 'yes':'no'}</li> <img  src={bookDetails.coverimage}/></div>):(<h2>loading...</h2>)}
       </ul>
 
       <button onClick={() => { setSelectedBookId(null) , navigate('/books')}}>

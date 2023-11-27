@@ -26,7 +26,7 @@ const Register = ({setToken}) => {
             })
         } );
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
+        
 
         setToken(jsonResponse.token);
 

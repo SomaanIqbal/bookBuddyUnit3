@@ -26,10 +26,10 @@ function App() {
       <div id='main-section'>
         <Routes>
           <Route path='/books' element={<Books setSelectedBookId={setSelectedBookId} />}/>
-          <Route path='/books/:id' element={<SingleBook setSelectedBookId={setSelectedBookId} />} />
+          <Route path='/books/:id' element={<SingleBook setSelectedBookId={setSelectedBookId} token={token} setToken={setToken}/>} />
           <Route path='/register' element={<Register token ={token} setToken={setToken} />} />
           <Route path='/login' element={<Login token={token} setToken={setToken} />} />
-          <Route path='/account' element={<Account token={token} setToken={setToken}/>} />
+          <Route path='/account' element={<Account token={token} />} />
           <Route path='/navigations' element={<Navigations/>} />
         </Routes>
       </div>

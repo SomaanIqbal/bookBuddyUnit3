@@ -21,7 +21,7 @@ const Login = ({setToken}) => {
                 })
             })
             const jsonResponse = await response.json();
-            console.log(jsonResponse)
+            
             setSuccessMessage(jsonResponse.message);
             setToken(jsonResponse.token)
             
