@@ -1,7 +1,7 @@
 /* TODO - add your code to create a functional React component that renders a login form */
 import { useState } from "react";
 
-const Login = (token) => {
+const Login = ({setToken}) => {
     const [error, setError] = useState(null);
     const [email,setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -21,8 +21,10 @@ const Login = (token) => {
                 })
             })
             const jsonResponse = await response.json();
+            console.log(jsonResponse)
             setSuccessMessage(jsonResponse.message);
-            console.log("hi");
+            setToken(jsonResponse.token)
+            
 
         } catch (error){
             setError(error.message)

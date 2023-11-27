@@ -11,10 +11,7 @@ import Navigations from './components/Navigations'
 
 function App() {
   const [selectedBookId, setSelectedBookId] = useState(null);
-  // const [email,setEmail] = useState("");
-  // const [password, setPassword] = useState("")
   const [token, setToken] = useState(null);
-
 
   return (
     <>
@@ -30,9 +27,9 @@ function App() {
         <Routes>
           <Route path='/books' element={<Books setSelectedBookId={setSelectedBookId} />}/>
           <Route path='/books/:id' element={<SingleBook setSelectedBookId={setSelectedBookId} />} />
-          <Route path='/register' element={<Register /*email={email} password={password}*/ token ={token} setToken={setToken} />} />
-          <Route path='/login' element={<Login /*email={email} password={password}*/ token={token} setToken={setToken} />} />
-          <Route path='/account' element={<Account/>} />
+          <Route path='/register' element={<Register token ={token} setToken={setToken} />} />
+          <Route path='/login' element={<Login token={token} setToken={setToken} />} />
+          <Route path='/account' element={<Account token={token} setToken={setToken}/>} />
           <Route path='/navigations' element={<Navigations/>} />
         </Routes>
       </div>
