@@ -3,6 +3,9 @@ import { useState } from "react";
 
 const Login = (token) => {
     const [error, setError] = useState(null);
+    const [email,setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
     const handleClick = async () => {
 
@@ -13,12 +16,12 @@ const Login = (token) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    email: 'ssmithi@example.com',
-                    password: 'sam345'
+                    email: email,
+                    password: password
                 })
             })
-            const jsonResponse = response.json();
-            
+            const jsonResponse = await response.json();
+            setSuccessMessage(jsonResponse.message);
             console.log("hi");
 
         } catch (error){
@@ -33,7 +36,17 @@ const Login = (token) => {
 
       {error && <p>{error}</p>}
 
-      <button onClick={() => {handleClick()}}>Authenticate Token</button>
+      <label>
+          Email:<input value={email} onChange={(event)=> {setEmail(event.target.value)}} />
+        </label>
+
+        <label>
+          Password:<input value={password} onChange={(event) => {setPassword(event.target.value)}}/>
+        </label>
+
+      <button onClick={() => {handleClick()}}>Login</button>
+
+      {successMessage && <p>{successMessage}</p>}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 /* TODO - add your code to create a functional React component that renders a registration form */
 import { useState } from "react";
 
-const Register = (setToken) => {
+const Register = (/*email,setEmail,*/ setToken) => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -27,7 +27,7 @@ const Register = (setToken) => {
         } );
         const jsonResponse = await response.json();
         console.log(jsonResponse);
-        
+
         setToken(jsonResponse.token);
 
 
